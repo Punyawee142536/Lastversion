@@ -9,7 +9,7 @@ facedetect = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 id = input("Enter Your ID: ")
 counts = {'normal': 0, 'gray': 0, 'noise': 0, 'blur': 0, 'flip': 0, 'threshold': 0, 'contrast': 0, 'brightness': 0}
-target_counts = {'normal': 300, 'gray': 300, 'noise': 200, 'blur': 200, 'flip': 200, 'threshold': 100, 'contrast': 200, 'brightness': 200}
+target_counts = {'normal': 100, 'gray': 100, 'noise': 100, 'blur': 100, 'flip': 100, 'threshold': 100, 'contrast': 200, 'brightness': 100}
 
 # ฟังก์ชันสำหรับบันทึกภาพ
 def save_image(prefix, image):
@@ -46,7 +46,7 @@ while True:
         for effect, max_count in target_counts.items():
             if counts[effect] < max_count:
                 processed_img = process_image(face_img, effect if effect != 'normal' else None)
-                save_image(f'User.{id}_{effect}', processed_img)
+                save_image(f'User.{id}.', processed_img)
                 counts[effect] += 1
         cv2.rectangle(frame, (x, y), (x+w, y+h), (55, 55, 255), 2)
 
